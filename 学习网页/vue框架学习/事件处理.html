@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <title>Document</title>
+</head>
+<body>
+    <div id="dom">
+        <input @keyup.65='aup'></input>
+<br>
+<!-- 可以用如下修饰符来实现仅在按下相应按键时才触发鼠标或键盘事件的监听器。
+.ctrl
+.alt
+.shift
+.meta -->
+        <input @keyup.alt.67='altc'>alt+c</input>
+        <!-- .exact 修饰符允许你控制由精确的系统修饰符组合触发的事件。 -->
+        <button @click.ctrl.exact='butc'>ctrl-click</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+        // .enter
+// .tab
+// .delete (捕获“删除”和“退格”键)
+// .esc
+// .space
+// .up
+// .down
+// .left
+// .right
+        Vue.config.keyCodes.ao=65;
+        //<input @keyup.ao='aup'></input>
+        //或者
+        var dom=new Vue({
+            el:'#dom',
+            methods:{
+                aup:function(){
+                    alert('a');
+                },
+                altc:function(){
+                    alert('alt+c')
+                },
+                butc:function(){
+                    alert('button ctrl+click')
+                }
+            }
+        })
+
+// <div id="dom7" @click.passive='xx'>
+//.passive 修饰符尤其能够提升移动端的性能。
+    </script>
+</body>
+</html>

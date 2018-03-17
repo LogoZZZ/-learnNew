@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>Document</title>
+    <style>
+        .active{color: blue;}
+        .sb{color: blueviolet;}
+        .nu{font-size: 2em;}
+        .er{color: aqua;}
+        [v-cloak]{display: none;}
+
+    </style>
+</head>
+<body>
+    <div id="dv1" :class="{active : isActive}" :style="{border:bbt,'font-size':llf,display:['-webkit-box','-ms-flexbox','flex'] }">
+        <!-- 自动选择可被浏览器支持的 display值 -->
+        xxxx
+        <p :class="isb" style="font-size:30px">2222</p>
+        <p :class="[isnull,iserror]">sex</p>
+    </div>
+    
+    <script>
+      var dv1=new Vue({
+          el:'#dv1',
+          data:{
+              isActive:true,
+              //第一种
+              isb:{
+                  sb:true
+              },
+              //第二种
+              isnull:'nu',
+              iserror:'er',
+              //第三种
+              bbt:'5px solid black',
+              llf:'20px'
+          }
+      })
+    </script>
+</body>
+</html>

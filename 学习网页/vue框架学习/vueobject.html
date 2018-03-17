@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="dom1">
+        {{ message }}
+    </div>
+
+    <div id="dom2">
+        <span :title='message'>
+            鼠标悬停查看绑定星系
+        </span>
+    </div>
+
+    <div id="dom3">
+        <p v-if="seen">现在你看到我了</p>
+    </div>
+
+    <div id="dom4">
+        <ul>
+            <li v-for='todo in tods'>
+                {{todo.text}}
+            </li>
+        </ul>
+    </div>
+
+    <div id="dom5">
+        <p>{{message}}</p>
+        <button v-on:click='rM'>逆转消息</button>
+    </div>
+
+    <div id="dom6">
+        <p>{{message}}</p>
+        <input type="text" v-model="message">
+    </div>
+    <script>
+     var app =new Vue({
+         el:'#dom1',
+         data:{
+             message:'hello vue'
+         }
+     })
+     var app2 =new Vue({
+         el:'#dom2',
+         data:{
+             message:'页面加载'+new Date().toLocaleString()
+         }
+     })
+
+     var app3=new Vue({
+         el:'#dom3',
+         data:{
+             seen:false,
+         }
+     })
+
+     var app4=new Vue({
+         el:'#dom4',
+         data:{
+             tods:[
+                 {text:'学习1'},
+                 {text:'学习2'},
+                 {text:'学习3'},
+             ]
+         }
+     })
+
+     var app5=new Vue({
+         el:'#dom5',
+         data:{
+             message:'hello vuejs',
+         },
+         methods:{
+             rM:function(){
+                 this.message=this.message.split('').reverse().join('')
+             }
+         }
+     })
+
+     var app6=new Vue({
+         el:'#dom6',
+         data:{
+             message:'hello'
+         }
+     })
+    </script>
+</body>
+</html>

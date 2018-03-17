@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    function per(name,age){
+            this.name=name;
+            this.age=age;
+            console.log(name+age)
+    }
+    per.prototype.show=function(){
+        return 'same o'
+    }
+    // constructor用法 1、调用自身构造函数
+    per.prototype.ren=function(){
+        return this.constructor('hushuo',100)
+    }
+    // xiaom.ren()
+    // constructor用法 2、分辨原型对象属于哪个构造函数
+    var xiaom=new per('zyj',22);
+    xiaom.eatxiaom=function(){
+        console.log('xiaom eat')
+    }
+    console.log(xiaom.constructor===per)
+    // constructor用法 3、从实例新建另一个实例
+    var xiaoh=new xiaom.constructor()
+    // xiaoh.eatxiaom(); 报错，因此确认只继承了per
+    // constructor用法 4、从构造函数继承另外一种构造函数模式
+    function swt(){
+        console.log("swt - sure")
+    }
+    function son(){
+        son.sure.constructor.call()
+    }
+    son.sure=new swt();
+    // son.sure()
+    // console.log(xiaom.constructor===per.prototype.constructor)
+    //     xiaom.show()
+    // console.log(xiaom.show === xiaoh.show);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    {
+        let x=10
+        //let 块级作用域 和const作用域相等
+        var y=20
+    }
+    console.log(y)
+    // console.log(x) not defined
+    const r=3.4;
+    // r=5; 报错，常亮不能被改变值
+    {
+        let [p=true,b]=[false,20];
+        //变量的解构赋值
+        console.log(p)
+        var {bar,par}={par:'hello',bar:'world'}
+        //对象的解构赋值，下面输出 helloworld
+        console.log(par+bar)
+        //解构赋值用途:
+        function add2(){
+            return [11,22,33]
+        }
+        let [x,y,z]=add2();
+        console.log(x)
+
+        let popt=`<html>
+        <div>xxx</div>
+        </html>`;
+        // console.log(popt)
+
+        let px={popt}
+        // console.log(px)
+    }
+
+    {
+        //函数的扩展
+        function foron([mp='nihao']=[]){
+            return mp;
+        }
+        console.log( foron()) ;
+        let x=['zyj']
+        console.log(foron(x)) 
+
+
+        // function add(y,z=y+1){
+        //     console.log(z)
+        // }
+        // add(3); 输出4
+
+        // let add=(y,z=y+1)=>{console.log(z);}
+        // add(3);
+        //输出4
+
+        let add=(y,z=y+1)=>z;
+        console.log(add(3))
+        //输出4
+        // 箭头函数的注意点：函数体内this对象就是定义所在的对象，而不是使用的对象
+        //                 不可以当做构造函数，也就是说，不能用new命令
+        //                 不能使用arguments对象和yield命令
+    }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="dom">
+        <!-- 多行文本框 -->
+        <p>{{message}}</p>
+     <textarea name="" id="" cols="20" rows="5" v-model='message' placeholder="message give p"></textarea>
+     <!-- 复选框 -->
+     <input type="checkbox" v-model='checked' id="checkbox">
+     <label for="checkbox">{{checked}}</label>
+<br>
+     <input type="checkbox" id="jack" value="jack" v-model='checkedNames'>
+     <label for="jack">jack</label>
+     <input type="checkbox" id="john" value="john" v-model='checkedNames'>
+     <label for="john">john</label>
+     <input type="checkbox" id="mike" value="mike" v-model='checkedNames'>
+     <label for="mike">mike</label>
+     <span>{{checkedNames}}</span>
+<br>
+<!-- 单选按钮 -->
+        <input type="radio" value="one" v-model='pick' id="one">
+        <label for="one">one</label>
+        <input type="radio" value="two" v-model='pick' id="two">
+        <label for="two">two</label><br>
+        <span>{{pick}}</span>
+        <!-- 选择框 单选-->
+
+        <br>
+        <select v-model='selected'>
+            <option disabled value="">请选择</option>
+            <option value="a">a</option>
+            <option value="b">b</option>
+            <option value="c">c</option>
+            <!-- 或者<option >a</option>
+            <option>b</option>
+            <option>c</option> -->
+        </select>
+        <span>{{selected}}</span><br>
+
+        <!-- for动态渲染 -->
+        <select name="" id="" v-model='selected2'>
+            <option v-for='option in options' :value='option.value'>
+                {{option.text}}
+            </option>
+            <!-- 为什么option的value值能赋值给select的selected2呢，这里运用到值绑定 -->
+        </select>
+        <span>{{selected2}}</span>
+<br>
+<!-- 值绑定 -->
+<input type="radio" id="ms" v-model='ms' value="a">
+<!-- input选中是ms的值为a -->
+<label for="ms">{{ms}}</label>
+
+<br>
+<!-- 复选框 -->
+<input type="checkbox" v-model='toggle' true-value="yes" false-value="no">
+<!-- 这里的 true-value 和 false-value 特性并不会影响输入控件的 value 特性，因为浏览器在提交表单时并不会包含未被选中的复选框。如果要确保表单中这两个值中的一个能够被提交，(比如“yes”或“no”)，请换用单选按钮。 -->
+<span>{{toggle}}</span>
+<br>
+
+<input type="number" v-model="intx":value='x'>
+<span>{{intx}}</span>
+<!-- 修饰符： 在“change”时而非“input”时更新
+<input v-model.lazy="msg" >
+<input v-model.number="age" type="number">
+number修饰，自动将''转换为数值类型（number）
+如果要自动过滤用户输入的首尾空白字符，可以给 v-model 添加 trim 修饰符：
+<input v-model.trim="msg"> -->
+    </div>
+    
+    <script>
+        var dom=new Vue({
+            el:'#dom',
+            data:{
+                message:'',
+                checked:false,
+                checkedNames:[],
+                pick:"",
+                selected:'',
+                selected2:'A',
+                options:[
+                    {text:'one',value:'A'},
+                    {text:'two',value:'B'},
+                    {text:'three',value:'C'},
+                ],
+                ms:'b',
+                toggle:'no',
+                intx:'',
+                x:'x-radio'
+            }
+        })
+    </script>
+</body>
+</html>

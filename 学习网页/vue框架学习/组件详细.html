@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="dom">
+        <simple-counter :sc='message'></simple-counter>
+        <simple-counter :sc='message'></simple-counter>
+        <simple-counter :sc='message'></simple-counter>
+    </div>
+    <!-- 组件dom模板解析注意事项 <ul>、<ol>、<table>、<select> 这样的元素里允许包含的元素有限制，而另一些像 <option> 这样的元素只能出现在某些特定元素的内部。 -->
+
+    <div id="dom2">
+        <input type="text" v-model="message2">
+        <child :dom2p='message2'></child>
+        <!-- <child dom2p='message2'></child> 静态prop 上面的是动态 -->
+    </div>
+
+    <!-- 使用 v-on绑定自定义事件 -->
+
+    <div id="dom3">
+        <p>{{title}}</p>
+        <titcomponent v-on:butclick='motitle'></titcomponent>
+        <titcomponent v-on:butclick='motitle'></titcomponent>
+    </div>
+
+    <!-- 注意methods中的this永远指向vue的实例 -->
+    <div id="domx">
+        <p v-for='ms in message'>{{ms}}</p>
+        <inputms v-on:invue='addtext'></inputms>
+    </div>
+    <!-- 在《组件》上使用.native修饰符绑定原生事件 -->
+    
+    <!-- 以下通过is编写动态组件 -->
+    <div id="divis">
+        <divcom :is='createHome'></divcom>
+    </div>
+    <!-- <keep-alive></keep-alive> 可以保留切换出去的组件的状态-->
+    <script>
+        var inedx={
+            template:'<p>welcome to inedx</p>'
+        }
+        
+        new Vue({
+            el:'#divis',
+            data:{createHome:inedx},
+            
+        })
+        function cpon(){
+            alert('start')
+        }
+        var add='add';
+         Vue.component('inputms',{
+            template:'<div>\
+            <input type="text" v-model="mesg" />\
+            <button @click="addtext0">'+add+'</button>\
+            </div>',
+            data:function(){
+                return {mesg:'text on here'}
+            },
+            methods:{
+                addtext0:function(){
+                    this.$emit('invue',{message:this.mesg})
+                }
+            }
+        })
+new Vue({
+  el:'#domx',
+  data:{
+      message:[]
+  },
+  methods:{
+      addtext:function(payload){
+         this.message.push(payload.message);
+      }
+  }
+})
+      
+
+        Vue.component('titcomponent',{
+            template:'<button v-on:click="motitle">{{conter}}</button>',
+            data:function(){
+                return {
+                    conter:0
+                }
+            },
+            methods:{
+                motitle:function(){
+                    this.conter++;
+                    this.$emit('butclick')
+                    //$emit('butclick')可以带入两个参数，第一个是实行方法，第二个是构造方法的引入参数
+                }
+            }
+        })
+        var dom3=new Vue({
+            el:'#dom3',
+            data:{
+                title:0
+            },
+            methods:{
+                motitle:function(){
+                    this.title++
+                }
+            }
+        })
+
+
+        //组件中的data必须是函数 data：function(){}  props内也可以是对象，prop验证可以判断传入prop的值，给开发者开发组件非常有用
+        Vue.component('simple-counter',{
+            template:'<button @click="counter++">{{counter}}{{sc}}</button>',
+            data:function(){
+                return {
+                    counter:0
+                }
+            },
+            props:['sc']
+        })
+ var dom=new Vue({
+     el:'#dom',
+     data:{
+         message:'pp'
+     }
+     
+ })
+Vue.component('child',{
+    template:'<span>{{dom2p}}</span>',
+    props:['dom2p']
+})
+ var dom2=new Vue({
+     el:'#dom2',
+     data:{
+         message2:'ni ya se!'
+     },
+     
+ })
+
+
+    </script>
+</body>
+</html>

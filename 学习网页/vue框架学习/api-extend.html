@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>Document</title>
+    <style>
+        .active{color: blue;}
+        [v-cloak]{display: none;}
+    </style>
+</head>
+<body>
+    <div id="dv1">
+        
+    </div>
+
+    <div id="dv2">
+        <p v-if="Math.random()>0.5">look me!</p>
+        <p v-else>fuck me</p>
+        <template v-if="loginType==='username'">
+            <label>Username</label>
+            <input placeholder=" you name" key="username-input">
+        </template>
+        <template v-else>
+            <label>email</label>
+            <input placeholder="you email" key="email-input">
+        </template>
+        <button @click="but" v-show="sh">click</button>
+    </div>
+    
+    <script>
+        var dv2=new Vue({
+            el:'#dv2',
+            data:{
+                loginType:'username',
+                sh:true
+            },
+            methods:{
+                but:function(){
+                    this.loginType=='username'?this.loginType='email':this.loginType='username';
+                    this.sh==true?this.sh=false:this.sh=true;
+                }
+            }
+        })
+        var dv1=Vue.extend({
+            template:'<p>{{firstname}} {{lastname}}</p>',
+            data:function(){
+                return {
+                    firstname:'z',
+                    lastname:'yj'
+                }
+            }
+        })
+
+        new dv1().$mount('#dv1')
+    </script>
+</body>
+</html>

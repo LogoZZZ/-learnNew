@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="dom1">
+        <div v-for='(value1,value2,index) in object' v-html='value1':key='value2.id'>
+           <!-- {{index}}.{{value2}}:{{value1}}  -->
+           <!-- 当只有连个value值时，第一个对应key，第二个对应value -->
+        </div>
+        <input type="text"v-model='evel'>
+        
+        <button @click='setx'>click</button>
+    </div>
+
+    <my-con id="dom2">
+        <p v-for="n in n3(nm)">{{n}}</p>
+    </my-con>
+
+    <div id="domx">
+        <input
+        type="text"
+        v-model='newText'
+        @keyup.enter='addNewTodo'
+        placeholder="add a new todo">
+        <ul>
+            <li
+            is='my-con'
+            v-for='(todo,index) in todos'
+            :key='todo.id'
+            :title='todo.title'
+            @remove='todos.splice(index,1)'>
+
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        var ko='<button>click</button>'
+    var dom1=new Vue({
+        el:'#dom1',
+        data:{
+            evel:"",
+            object:{
+                name:ko,
+                age:'不知道'
+            }
+        },
+        methods:{
+            setx:function(){
+               eval( this.evel);
+            }
+        }
+
+        // 在指定index位置添加参数 Vue.set(dom1.object,'op','new')
+    })
+    // dom1.se=Object.assign({},dom1.se,{
+    //     age:100,
+    //     fa:'vue true'
+    // })
+    // 下面是显示过滤的方法。
+    var dom2=new Vue({
+        el:'#dom2',
+        data:{
+            nm:[1,2,3,4,5,6,4,4,3,3,3,3,3,3]
+        },
+        // computed:{
+        //     n3:function(){
+        //         return this.nm.filter(function(num){
+        //         return num==3;
+        //         })
+        //     }或者
+        //}
+        methods:{
+            n3:function(nm){
+                return nm.filter(function(num){
+                    return num==3;
+                })
+            }
+        }
+    })
+
+
+    Vue.component("my-con",{
+        template:'\
+        <li>\
+        {{ title }}\
+        <button @click="$emit(\'remove\')">X</button>\
+        </li>\
+        ',
+        props:['title']
+    })
+
+    var domx=new Vue({
+        el:'#domx',
+        data:{
+            newText:'',
+            todos:[
+                {
+                    id:1,
+                    title:'one',
+                },
+                {
+                    id:2,
+                    title:'two',
+                }
+            ],
+            nextId:3
+        },
+        methods:{
+            addNewTodo:function(){
+                this.todos.push({
+                    id:this.nextId++,
+                    title:this.newText
+                })
+                this.newText=''
+            }
+        }
+    })
+    </script>
+</body>
+</html>

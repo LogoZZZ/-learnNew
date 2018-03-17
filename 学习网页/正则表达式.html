@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" placeholder="iphone" id="iphone">
+    <label for="iphone">电话</label>
+    <button onclick="reiphone()">on</button>
+    <input type="text" placeholder="e-mail" id="e-mail">
+    <label for="e-mail">邮箱</label>
+    <button onclick="remail()">on</button>
+
+    <script>
+           var p= function(re,idvalue){
+                var revalue=re.test(idvalue);
+            if(idvalue==undefined){
+                alert('0')
+            }else if(revalue==true){
+                alert('ok')
+            }else if(revalue==false){
+                alert('no')
+            }
+            }
+
+        function reiphone(){
+            var value=document.getElementById('iphone').value;
+            var re=/^[1][3,4,5,7,8][0-9]{9}$/;  
+            p(re,value)
+        }
+        function remail(){
+            var value=document.getElementById('e-mail').value;
+            var re=/^[a-zA-Z0-9]+@[a-zA-Z0-9]+.(com|cn)$/;
+            p(re,value)
+        }
+        
+        // alert(mail.match(re))
+    </script>
+</body>
+</html>

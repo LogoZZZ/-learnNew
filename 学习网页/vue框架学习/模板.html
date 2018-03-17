@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>Document</title>
+    <style>
+        .active{color: blue;}
+        [v-cloak]{display: none;}
+    </style>
+</head>
+<body>
+    <div id="dv1">
+        <p v-bind:class="dv1p1" v-once>{{message}}</p>
+        <input  v-model="message">
+    </div>
+    <div v-cloak>
+        sssssss 
+    </div>
+
+    <div id="dv2">
+        <p>hell： {{rawhtml}}</p>
+        <span v-html="rawhtml" style="color:red"></span>
+    </div>
+    <script>
+var dv2=new Vue({
+    el:'#dv2',
+    data:{
+        rawhtml:'<span style="color:red">fuukk</span>'
+    }
+})
+
+     var dv1=new Vue({
+         el:'#dv1',
+         data: {
+              message:'sss',
+             dv1p1:{
+               active: true,
+             }
+           
+            
+          }
+     })
+
+    </script>
+</body>
+</html>
