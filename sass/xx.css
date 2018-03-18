@@ -1,0 +1,17 @@
+.errer {
+  border: 1px solid red;
+  background-color: #fdd; }
+
+.seriousError {
+  border: 1px solid red;
+  background-color: #fdd;
+  border-width: 3px; }
+
+.errer2, .serto {
+  border: 1px solid red;
+  background-color: #fdd; }
+
+.serto {
+  border-bottom: 2px; }
+
+/*# sourceMappingURL=xx.css.map */

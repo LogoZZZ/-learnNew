@@ -1,0 +1,32 @@
+//$a-color:red;
+//$b-color:blue;
+//$c-color:yellow;
+//@mixin tag-color($a-color,$b-color:$a-color,$c-color:$a-color){
+//    color: $a-color;
+//    background-color: $b-color;
+//    border-color: $c-color;
+//}
+//div{
+//    @include tag-color(red);
+//}
+
+@mixin err{
+    border: 1px solid red;
+    background-color: #fdd;
+}
+    .errer{
+        @include err;
+    }
+    .seriousError {
+        @include err;
+        border-width: 3px;
+}
+
+.errer2{
+    border: 1px solid red;
+    background-color: #fdd;
+}
+.serto{
+    @extend .errer2;
+    border-bottom: 2px;
+}
