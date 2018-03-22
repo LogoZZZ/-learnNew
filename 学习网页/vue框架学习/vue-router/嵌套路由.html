@@ -8,9 +8,9 @@
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
     <style>
-    .router-link-active{
+    /* .router-link-active{
         color: red;
-    }
+    } */
     </style>
 </head>
 <body>
@@ -19,13 +19,37 @@
         <p>
         
             <router-link to="/user/foo">/user /foo</router-link>
-            <router-link to="/user/bar">/user /bar</router-link>
+            <router-link to="/user/foo/profile">/user /foo/profile</router-link>
+            <router-link to="/user/foo/posts">/user /foo/post</router-link>
 
         </p>
         <router-view></router-view>
     </div>
     <script>
-   
+        const User={
+            template:`
+            <div class='user'>
+            <h2>User {{$route.params.id}}</h2>
+            <router-view></router-view>
+            </div>
+            `
+        }
+
+        const UserHome={template:'<div>home</div>'}
+        const UserProfile={template:'<div>Profile</div>'}
+        const UserPosts={template:'<div>posts</div>'}
+
+        const router=new VueRouter({
+            routes: [
+                {path:'/user/:id',component:User,
+                children:[
+                    {path:'',component:UserHome},
+                    {path:'profile',component:UserProfile},
+                    {path:'posts',component:UserPosts}
+                ]
+                }]
+        })
+        new Vue({router,el:'#app'})
     </script>
 </body>
 </html>
